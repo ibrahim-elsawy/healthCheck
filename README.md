@@ -1,9 +1,6 @@
-The following are the two main functions for calculating the heart rate and checking the quality of image
-# heart_rate_mesure
-
-- [calcHR](https://github.com/ibrahim-elsawy/heart_rate_mesure/blob/main/new/main_HR.py) function process vedio and calcualtes the hr by passing vedio argument True by default and false for vedio streaming and takes directory of the vedio.
-- it much better for the accuaracy to get vedio from user of length > 8sec.
-
-
-# Quality 
-- [getQuality](https://github.com/ibrahim-elsawy/heart_rate_mesure/blob/main/new/quality.py) takes the directory of image as argument and return true if image has acceptable quality. comparing it with threshold constant 8 which is chosen by testing many images.
+# server
+the server has three endpoints:
+- **"/quality"** this is POST method recieves image return json response {"quality":"good"} with 200 status code for good resolution image and {"quality":"poor", "error":"The image has bad quality"} with 400 status code
+- **"/heartrate"** this is POST method recieves video as content_type:'multipart/form-data' return json format {"value": Integer number} with status code 200  
+- **"/tongue"** this is POST method recieves image of user tongue return json response as shown
+![tongue json response](./jsonRes.png)
