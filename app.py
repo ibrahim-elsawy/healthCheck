@@ -20,18 +20,25 @@ def randStr(chars = string.ascii_uppercase + string.digits, N=10):
 @app.route('/tongue', methods=['POST'])
 def tongue():
     if request.method == 'POST':
-        seg = TongueProcess()
-        img = Image.open(request.files['image'])
-        tongue = seg.getTongueInfo(img)
-        return jsonify(tongue)
+        try:
+            seg = TongueProcess()
+            img = Image.open(request.files['image'])
+            tongue = seg.getTongueInfo(img)
+            return jsonify(tongue)
+        except Exception as e:
+            return 400
 
 @app.route("/quality", methods = ['POST'])
 def get_quality():
-	if request.method == 'POST':
-		img = Image.open(request.files['image'])
-	quality = getQuality(img)
+    if request.method == 'POST':
+        try:
+            img = Image.open(request.files['image'])
+            quality = getQuality(img)
+            return jsonify({'quality':'good'}) if quality else (jsonify({'quality':'poor', 'error':'The image has bad quality'}),400)
+        except Exception as e:
+            return 400
 
-	return jsonify({'quality':'good'}) if quality else (jsonify({'quality':'poor', 'error':'The image has bad quality'}),400)
+
 
 @app.route("/heartrate", methods=['POST'])
 def test():
