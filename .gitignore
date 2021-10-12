@@ -5,6 +5,7 @@ __pycache__/
 *$py.class
 utils/*.pt
 utils/*.dat
+data/
 # C extensions
 *.so
 
