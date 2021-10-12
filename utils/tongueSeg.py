@@ -1,5 +1,4 @@
-from PIL import Image, ImageFile
-import requests
+from PIL import Image
 import torch 
 from torch import nn
 import numpy as np
